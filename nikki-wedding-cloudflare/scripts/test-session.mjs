@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';import fs from 'node:fs';import ts from 'typescript';
+const source=ts.transpileModule(fs.readFileSync('lib/session.ts','utf8'),{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.ES2022}}).outputText;
+const {issueSession,validSession,passwordMatches}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const secret='a'.repeat(64),password='correct-random-password-for-tests',now=Date.now();
+const session=await issueSession(secret,password,now);
+assert.equal(await validSession(session,secret,password,now),true);
+assert.equal(await validSession(session,secret,password,now+43200001),false);
+assert.equal(await validSession(session+'0',secret,password,now),false);
+assert.equal(await validSession(session,secret,'changed-password',now),false);
+assert.equal(await validSession(session,'b'.repeat(64),password,now),false);
+assert.equal(await validSession('invalid',secret,password,now),false);
+assert.equal(await passwordMatches(secret,password,password),true);
+assert.equal(await passwordMatches(secret,password,'wrong'),false);
+console.log('Session checks passed: valid login, expiry, tampering, secret/password rotation and incorrect password.');
