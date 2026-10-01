@@ -59,6 +59,9 @@ if (bucket) {
   }
 }
 
-if (built) writeJson(builtPath, built);
+if (built) {
+  built.keep_vars = true;
+  writeJson(builtPath, built);
+}
 run(['d1', 'migrations', 'apply', 'DB', '--remote', '--config', 'wrangler.jsonc']);
-run(['deploy', '--config', builtPath]);
+run(['deploy', '--keep-vars', '--config', builtPath]);
