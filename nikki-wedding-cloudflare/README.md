@@ -52,8 +52,8 @@ Open a terminal in the extracted project folder.
 4. Set two production secrets (each command prompts for its value):
 
    ```sh
-   pnpm exec wrangler secret put ADMIN_PASSWORD --name nikki-wedding-invitation
-   pnpm exec wrangler secret put SESSION_SECRET --name nikki-wedding-invitation
+   pnpm exec wrangler secret put ADMIN_PASSWORD --name shrishti-shrey-wedding-invitation
+   pnpm exec wrangler secret put SESSION_SECRET --name shrishti-shrey-wedding-invitation
    ```
 
    Choose a random ADMIN_PASSWORD of at least 20 characters and a separate SESSION_SECRET of at least 32 characters. Prefer a password manager. Never put either secret in GitHub, wrangler.jsonc or browser code. Changing either value invalidates existing management sessions. Share the family password privately with your sister; guests never need it.
@@ -61,7 +61,7 @@ Open a terminal in the extracted project folder.
 5. Visit /admin on the new URL and sign in. Update Artwork & events, confirm dates/maps, save, create a test family invitation and submit an RSVP. Check the saved response before sending real invitations.
 
 ## Automatic deployments with GitHub
-Upload this source to a private GitHub repository, excluding the ignored files. In Cloudflare, connect that repository to the existing nikki-wedding-invitation Worker through Workers Builds.
+Upload this source to a private GitHub repository, excluding the ignored files. In Cloudflare, connect that repository to the existing shrishti-shrey-wedding-invitation Worker through Workers Builds.
 
 - Build command: `pnpm run build`
 - Deploy command: `pnpm run deploy`
