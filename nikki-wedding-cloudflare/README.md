@@ -3,8 +3,8 @@
 A standalone edition of Srishti & Shrey's wedding invitation. The existing ChatGPT-hosted Site remains running independently. This export has no Sites project identity or ChatGPT authentication dependency.
 
 ## Included features
-- Animated envelope and individually replaceable event artwork.
-- Family-specific links showing only their invited events.
+- Animated envelope and individually replaceable event artwork, including formal English and Hindi Wedding designs.
+- Family-specific links showing only their selected invitations.
 - Saved RSVPs, invited-event validation and CSV export.
 - Editable venues, exact map links and calendar files in India time.
 - Family management password, signed 12-hour sessions, HTTP-only cookies, same-origin write checks and login attempt limits.
@@ -85,10 +85,12 @@ The preview helper copies the ignored local secrets file into the generated Work
 ## Swapping images
 In /admin, choose Artwork & events, upload a JPG/PNG/WebP under 8 MB for the envelope or a card, then select Save artwork & details. The animation stays the same. The envelope works best with landscape artwork and a centered seam; the cards work best with portrait artwork.
 
+The regular Wedding card and formal English and Hindi cards are three designs for the same Wedding RSVP. In /admin, the formal choices appear as **Wedding Invite (English)** and **Wedding Invite (Hindi)**. Shared links show **Wedding Invite** for either formal card. Select one Wedding design per link. Both formal cards show 7:00 PM, while the regular Wedding card remains at 6:00 PM. The 15 generic links include four combinations for each formal design. The formal cards use `public/art/formal-wedding-en.png` and `public/art/formal-wedding-hi.png`, rendered from the supplied PDFs at higher resolution for in-page zooming. The source PDFs and low-resolution English PNG remain local and are ignored by Git.
+
 Default images are in public/art. Initial data is in lib/invitation.ts. Once you save configuration in D1, that saved data overrides source defaults. Editing printed text inside an image requires replacing that image; the event fields below it remain editable.
 
 ## Data and migration
-This export starts a new database. It does not contain the current hosted Site's guest records, responses, saved configuration or R2 replacement images. Only the four default images are bundled. Keep the original Site if you already have responses there; arrange a D1/R2 export before migrating that data. A CSV export is a useful attendance backup but is not a complete database migration.
+This export starts a new database. It does not contain the current hosted Site's guest records, responses, saved configuration or R2 replacement images. The six default images are bundled. Keep the original Site if you already have responses there; arrange a D1/R2 export before migrating that data. A CSV export is a useful attendance backup but is not a complete database migration.
 
 Guests open unguessable /i/... links without signing in. A forwarded link represents the same family, so keep personalized links private. Uploaded invitation artwork is available to anyone who has its URL. Management uses one shared family password in this edition rather than individual manager accounts.
 
