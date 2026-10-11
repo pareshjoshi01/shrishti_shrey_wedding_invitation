@@ -2,6 +2,7 @@ export type EventInfo={id:string;name:string;date:string;time:string;end:string;
 export type Config={couple:string;envelope:string;draft:boolean;events:EventInfo[]};
 export const FORMAL_WEDDING_ID='formal_wedding_en';
 export const FORMAL_WEDDING_HI_ID='formal_wedding_hi';
+export const LUXERA_MAP_URL='https://maps.app.goo.gl/4Gag6ghJh5edHP9E7';
 export const weddingDesignIds=['wedding',FORMAL_WEDDING_ID,FORMAL_WEDDING_HI_ID];
 export const eventIds=['sangeet','haldi',...weddingDesignIds];
 export const genericCombinations=[
@@ -15,11 +16,11 @@ export function guestEventName(e:EventInfo){return isFormalWedding(e.id)?'Weddin
 export function selectDesign(current:string[],id:string,checked:boolean){return checked?[...current.filter(selected=>selected!==id&&!(weddingDesignIds.includes(id)&&weddingDesignIds.includes(selected))),id]:current.filter(selected=>selected!==id);}
 export function rsvpEventId(id:string){return isFormalWedding(id)?'wedding':id;}
 export function validSelection(ids:unknown):ids is string[]{return Array.isArray(ids)&&ids.length>0&&ids.every(id=>typeof id==='string'&&eventIds.includes(id))&&new Set(ids).size===ids.length&&ids.filter(id=>weddingDesignIds.includes(id)).length<=1;}
-export const defaults:Config={couple:'Srishti Jain weds Shrey Gupta',envelope:'/art/envelope.jpg',draft:false,events:[
+export const defaults:Config={couple:'Srishti weds Shrey',envelope:'/art/envelope.jpg',draft:false,events:[
 {id:'sangeet',name:'Sangeet',date:'2026-12-07',time:'17:30',end:'20:00',venue:'Hotel Radisson',city:'Bhopal',map:'',image:'/art/sangeet.jpg',note:'5:30 PM ring ceremony · 6:00–8:00 PM Sangeet, followed by dinner and photos on stage'},
 {id:'haldi',name:'Haldi',date:'2026-12-10',time:'11:00',end:'14:00',venue:'Luxera',city:'Delhi',map:'',image:'/art/haldi.jpg',note:'Showering the couple with love, laughter and turmeric!'},
 {id:'wedding',name:'Wedding',date:'2026-12-12',time:'18:00',end:'23:00',venue:'Luxera',city:'Delhi',map:'',image:'/art/wedding.jpg',note:'With the blessings of our families, we begin a new chapter together.'},
-{id:FORMAL_WEDDING_ID,name:'Wedding Invite',date:'2026-12-12',time:'19:00',end:'23:00',venue:'Luxera',city:'New Delhi',map:'',image:'/art/formal-wedding-en.png',note:'Mehrauli-Gurgaon Road, Near Arjan Garh, New Delhi'},
-{id:FORMAL_WEDDING_HI_ID,name:'Wedding Invite',date:'2026-12-12',time:'19:00',end:'23:00',venue:'Luxera',city:'New Delhi',map:'',image:'/art/formal-wedding-hi.png',note:'Mehrauli-Gurgaon Road, Near Arjan Garh, New Delhi'}]};
+{id:FORMAL_WEDDING_ID,name:'Wedding Invite',date:'2026-12-12',time:'19:00',end:'23:00',venue:'Luxera',city:'New Delhi',map:LUXERA_MAP_URL,image:'/art/formal-wedding-en.png',note:'Mehrauli-Gurgaon Road, Near Arjan Garh, New Delhi'},
+{id:FORMAL_WEDDING_HI_ID,name:'Wedding Invite',date:'2026-12-12',time:'19:00',end:'23:00',venue:'Luxera',city:'New Delhi',map:LUXERA_MAP_URL,image:'/art/formal-wedding-hi.png',note:'Mehrauli-Gurgaon Road, Near Arjan Garh, New Delhi'}]};
 export function dateLabel(e:EventInfo){return new Date(e.date+'T12:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
 export function timeLabel(e:EventInfo){return new Date(e.date+'T'+e.time).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'});}
