@@ -85,7 +85,11 @@ The preview helper copies the ignored local secrets file into the generated Work
 ## Swapping images
 In /admin, choose Artwork & events, upload a JPG/PNG/WebP under 8 MB for the envelope or a card, then select Save artwork & details. The animation stays the same. The envelope works best with landscape artwork and a centered seam; the cards work best with portrait artwork.
 
-The regular Wedding card and formal English and Hindi cards are three designs for the same Wedding RSVP. In /admin, the formal choices appear as **Wedding Invite (English)** and **Wedding Invite (Hindi)**. Shared links show **Wedding Invite** for either formal card. Select one Wedding design per link. Both formal cards show 7:00 PM, while the regular Wedding card remains at 6:00 PM. The 15 generic links include four combinations for each formal design. The formal cards use `public/art/formal-wedding-en.png` and `public/art/formal-wedding-hi.png`, rendered from the supplied PDFs at higher resolution for in-page zooming. The source PDFs and low-resolution English PNG remain local and are ignored by Git.
+The regular Wedding card and formal English and Hindi cards are three designs for the same Wedding RSVP. In /admin, the formal choices appear as **Wedding Invite (English)** and **Wedding Invite (Hindi)**. Shared links show **Wedding Invite** for either formal card. Select one Wedding design per link. Both formal cards show 7:00 PM, while the regular Wedding card remains at 6:00 PM. The 15 generic links include four combinations for each formal design. The formal cards use `public/art/formal-wedding-en.png` (rendered from draft 5) and `public/art/formal-wedding-hi.png`, rendered from the supplied PDFs at higher resolution for in-page zooming. The source PDFs and draft PNGs remain local and are ignored by Git.
+
+Guests now RSVP with their name and a single accept or decline choice for all celebrations on their link. New replies do not collect guest counts or messages. The admin dashboard counts accepting replies rather than people; CSV columns for guest counts and messages remain for older responses.
+
+The English and Hindi formal Wedding cards link to the supplied Luxera Google Maps location. Existing saved configurations with blank map fields pick up that link; a custom saved map link remains in place.
 
 Default images are in public/art. Initial data is in lib/invitation.ts. Once you save configuration in D1, that saved data overrides source defaults. Editing printed text inside an image requires replacing that image; the event fields below it remain editable.
 
@@ -95,7 +99,7 @@ This export starts a new database. It does not contain the current hosted Site's
 Guests open unguessable /i/... links without signing in. A forwarded link represents the same family, so keep personalized links private. Uploaded invitation artwork is available to anyone who has its URL. Management uses one shared family password in this edition rather than individual manager accounts.
 
 ## Draft content
-Confirm all event dates, venues and calendar end times. The original artwork shows incorrect weekdays for Sangeet and Wedding. Correct those images before turning off the draft notice. Exact map links are intentionally blank until the family confirms them.
+Confirm all event dates, venues and calendar end times. The original artwork shows incorrect weekdays for Sangeet and Wedding. Correct those images before turning off the draft notice. Map links for the other event cards are blank until the family confirms them.
 
 ## Free-plan checks
 Workers Free has request, script size and per-request CPU limits. This source builds successfully, but production free-plan CPU use must be measured on your account. Watch Worker errors and CPU metrics during your trial; optimize rendering or use a paid plan if needed. D1/R2 also have allowances; R2 can charge for usage beyond its free allowance.
