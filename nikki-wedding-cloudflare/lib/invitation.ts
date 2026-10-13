@@ -24,3 +24,12 @@ export const defaults:Config={couple:'Srishti weds Shrey',envelope:'/art/envelop
 {id:FORMAL_WEDDING_HI_ID,name:'Wedding Invite',date:'2026-12-12',time:'19:00',end:'23:00',venue:'Luxera',city:'New Delhi',map:LUXERA_MAP_URL,image:'/art/formal-wedding-hi.png',note:'Mehrauli-Gurgaon Road, Near Arjan Garh, New Delhi'}]};
 export function dateLabel(e:EventInfo){return new Date(e.date+'T12:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric'});}
 export function timeLabel(e:EventInfo){return new Date(e.date+'T'+e.time).toLocaleTimeString('en-IN',{hour:'numeric',minute:'2-digit'});}
+export function footerDates(events:EventInfo[]){
+const dates=[...new Set(events.map(event=>event.date))].sort();
+if(!dates.length)return '';
+const ordinal=(day:number)=>day+(day%100>=11&&day%100<=13?'th':day%10===1?'st':day%10===2?'nd':day%10===3?'rd':'th');
+const monthYear=(date:string)=>new Date(date+'T12:00:00').toLocaleDateString('en-IN',{month:'long',year:'numeric'});
+const sameMonth=dates.every(date=>date.slice(0,7)===dates[0].slice(0,7));
+const labels=dates.map(date=>sameMonth?ordinal(Number(date.slice(8))):ordinal(Number(date.slice(8)))+' '+monthYear(date));
+return (labels.length>1?labels.slice(0,-1).join(', ')+' & '+labels.at(-1):labels[0])+(sameMonth?' '+monthYear(dates[0]):'');
+}
